@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class MoveLeft : MonoBehaviour
 {
-    private float speed = 30;
+    private float speed;
     private PlayerController playerControllerScript;
-    private float leftBound = -15;
+    private float leftBound = -10;
 
     // Start is called before the first frame update
     void Start()
@@ -17,12 +17,12 @@ public class MoveLeft : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (playerControllerScript.gameOver == false)
+        if (!playerControllerScript.gameOver)
         {
-            transform.Translate(Vector3.left * Time.deltaTime * speed);
+            transform.Translate(Vector3.left * Time.deltaTime * speed, Space.World);
         }
 
-        if(transform.position.x < leftBound && gameObject.CompareTag("Obstacle"))
+        if(transform.position.x < leftBound && gameObject.CompareTag("Background"))
         {
             Destroy(gameObject);
         }
